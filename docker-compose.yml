@@ -1,0 +1,33 @@
+version: "3.8"
+
+services:
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend/src:/app/src
+    stdin_open: true
+    tty: true
+  backend:
+    build: ./backend
+    container_name: basic-container
+    ports:
+      - 9000:9000
+    volumes:
+      - ./backend:/app
+
+  mongodb:
+    image: "mongo"
+    volumes:
+      - data:/data/db
+
+volumes:
+  data:
+
+
+#    docker-compose build
+
+#   docker-compose up -d
+
+#  docker-compose down
